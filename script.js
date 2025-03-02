@@ -6,7 +6,7 @@ class MovieManager {
     }
 
     async searchMovie(title) {
-        const response = await fetch(`http://www.omdbapi.com/?t=${encodeURIComponent(title)}&apikey=${this.OMDB_API_KEY}`);
+        const response = await fetch(`https://www.omdbapi.com/?t=${encodeURIComponent(title)}&apikey=${this.OMDB_API_KEY}`);
         const data = await response.json();
         return data;
     }
