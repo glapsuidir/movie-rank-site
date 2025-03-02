@@ -1,3 +1,4 @@
+const myLove = "Kai";
 class MovieManager {
     constructor() {
         this.movies = JSON.parse(localStorage.getItem('movies')) || [];
