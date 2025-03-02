@@ -60,6 +60,17 @@ h2 {
     text-shadow: 2px 2px 0 #8b0000;
 }
 
+.decorative-star {
+    position: absolute;
+    left: 20px;  /* Matches the right: 20px of the secretButton */
+    top: 50%;
+    transform: translateY(-50%);
+    color: #ffd700;
+    font-size: 24px;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
 #secretButton {
     position: absolute;
     right: 20px;
@@ -72,6 +83,7 @@ h2 {
     cursor: pointer;
     padding: 10px;
     transition: transform 0.3s ease;
+    -webkit-tap-highlight-color: transparent;
 }
 
 #secretButton.active {
