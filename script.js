@@ -2,7 +2,7 @@ const myLove = "Kai";
 class MovieManager {
     constructor() {
         this.movies = JSON.parse(localStorage.getItem('movies')) || [];
-        this.OMDB_API_KEY = "${{ secrets.OMDB_API_KEY }}";
+        this.OMDB_API_KEY = '9c6a1ea1';
     }
 
     async searchMovie(title) {
