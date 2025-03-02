@@ -100,3 +100,25 @@ function deleteMovie(id) {
 
 // Initial display
 displayMovies();
+
+// Add this at the end of your file
+document.addEventListener('DOMContentLoaded', () => {
+    const secretButton = document.getElementById('secretButton');
+    let messageElement = document.createElement('div');
+    messageElement.className = 'secret-message';
+    messageElement.textContent = 'i love you kai ♥';
+    document.body.appendChild(messageElement);
+
+    secretButton.addEventListener('click', () => {
+        secretButton.classList.toggle('active');
+        messageElement.classList.toggle('visible');
+        
+        // Auto-hide after 3 seconds
+        if (messageElement.classList.contains('visible')) {
+            setTimeout(() => {
+                messageElement.classList.remove('visible');
+                secretButton.classList.remove('active');
+            }, 3000);
+        }
+    });
+});

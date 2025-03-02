@@ -60,6 +60,47 @@ h2 {
     text-shadow: 2px 2px 0 #8b0000;
 }
 
+#secretButton {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: #ffd700;
+    font-size: 24px;
+    cursor: pointer;
+    padding: 10px;
+    transition: transform 0.3s ease;
+}
+
+#secretButton.active {
+    transform: translateY(-50%) rotate(360deg);
+}
+
+.secret-message {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(26, 15, 15, 0.95);
+    padding: 20px 40px;
+    border: 2px solid #ffd700;
+    border-radius: 10px;
+    font-family: 'Limelight', cursive;
+    color: #ffd700;
+    font-size: 1.5rem;
+    z-index: 1000;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.secret-message.visible {
+    opacity: 1;
+    pointer-events: auto;
+}
+
 .add-movie-section {
     width: 100%;
     max-width: 600px;
