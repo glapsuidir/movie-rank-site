@@ -284,3 +284,12 @@ html {
     outline: none;
     border-color: #ffd700;
 }
+
+.copyright {
+    margin-top: 40px;
+    padding: 20px;
+    text-align: center;
+    color: #e8d4a4;
+    font-family: 'Old Standard TT', serif;
+    border-top: 1px solid rgba(232, 212, 164, 0.3);
+}
