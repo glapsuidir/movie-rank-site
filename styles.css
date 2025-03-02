@@ -40,6 +40,22 @@ header {
     position: relative;
 }
 
+header::after {
+    content: 'i love you kai ♥';
+    position: absolute;
+    bottom: -25px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: 'Limelight', cursive;
+    font-size: 0.8rem;
+    color: transparent;
+    transition: color 0.3s ease;
+}
+
+header:hover::after {
+    color: #ffd700;
+}
+
 h1 {
     font-family: 'Limelight', cursive;
     font-size: 2.5rem;

@@ -2,11 +2,10 @@
 class MovieManager {
     constructor() {
         this.movies = JSON.parse(localStorage.getItem('movies')) || [];
-        this.OMDB_API_KEY = '9c6a1ea1';
     }
 
     async searchMovie(title) {
-        const response = await fetch(`https://www.omdbapi.com/?t=${encodeURIComponent(title)}&apikey=${this.OMDB_API_KEY}`);
+        const response = await fetch(`/api/search-movie?title=${encodeURIComponent(title)}`);
         const data = await response.json();
         return data;
     }
