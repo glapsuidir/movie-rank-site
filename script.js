@@ -2,6 +2,7 @@
 class MovieManager {
     constructor() {
         this.movies = JSON.parse(localStorage.getItem('movies')) || [];
+        this.OMDB_API_KEY = '9c6a1ea1'; // This is a temporary solution
     }
 
     async searchMovie(title) {
