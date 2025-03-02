@@ -1,7 +1,7 @@
 # Movie Ranking Website
 
 ## Overview
-This is a simple movie ranking website where users can input movie details (name, cover image URL, and ranking) and generate a dynamically sorted list. The project is built using HTML, CSS, and JavaScript and is hosted on GitHub Pages.
+This is a simple movie ranking website where users can input movie details (name, cover image URL, and ranking) and generate a dynamically sorted list. The project is built using HTML, CSS, and JavaScript and is hosted on GitHub Pages. It can be found at https://glapsuidir.github.io/movie-rank-site.
 
 ## Features
 - Add movies with a name, cover image, and ranking.
