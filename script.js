@@ -1,64 +1,34 @@
-// Store and retrieve movies from localStorage
 class MovieManager {
     constructor() {
         this.movies = JSON.parse(localStorage.getItem('movies')) || [];
-        this.OMDB_API_KEY = '9c6a1ea1'; // This is a temporary solution
+        this.OMDB_API_KEY = '9c6a1ea1';
     }
 
     async searchMovie(title) {
-        try {
-            console.log('Searching for movie:', title); // Debug log
-            const url = `https://www.omdbapi.com/?t=${encodeURIComponent(title)}&apikey=${this.OMDB_API_KEY}`;
-            console.log('API URL:', url); // Debug log
-            
-            const response = await fetch(url);
-            const data = await response.json();
-            
-            console.log('API Response:', data); // Debug log
-            
-            if (data.Error) {
-                throw new Error(data.Error);
-            }
-            
-            return data;
-        } catch (error) {
-            console.error('Search movie error:', error.message);
-            throw error;
-        }
+        const response = await fetch(`https://www.omdbapi.com/?t=${encodeURIComponent(title)}&apikey=${this.OMDB_API_KEY}`);
+        const data = await response.json();
+        return data;
     }
 
     async addMovie(title, rating, notes) {
-        try {
-            const movieData = await this.searchMovie(title);
-            
-            // Check if movie already exists
-            const movieExists = this.movies.some(movie => 
-                movie.Title?.toLowerCase() === movieData.Title?.toLowerCase()
-            );
-            
-            if (movieExists) {
-                throw new Error('Movie already in list');
-            }
-            
-            const movie = {
-                id: Date.now(),
-                title,
-                rating: Number(rating),
-                notes,
-                date: new Date().toISOString(),
-                poster: movieData.Poster !== 'N/A' ? movieData.Poster : null,
-                year: movieData.Year || null,
-                director: movieData.Director || null,
-                plot: movieData.Plot || null
-            };
+        // Fetch movie data from OMDB
+        const movieData = await this.searchMovie(title);
+        
+        const movie = {
+            id: Date.now(),
+            title,
+            rating: Number(rating),
+            notes,
+            date: new Date().toISOString(),
+            poster: movieData.Poster !== 'N/A' ? movieData.Poster : null,
+            year: movieData.Year || null,
+            director: movieData.Director || null,
+            plot: movieData.Plot || null
+        };
 
-            this.movies.push(movie);
-            this.saveMovies();
-            return movie;
-        } catch (error) {
-            console.error('Add movie error:', error.message);
-            throw error;
-        }
+        this.movies.push(movie);
+        this.saveMovies();
+        return movie;
     }
 
     deleteMovie(id) {

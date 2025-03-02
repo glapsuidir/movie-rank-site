@@ -37,26 +37,7 @@ header {
     background: #1a0f0f;
     border-top: 3px double #e8d4a4;
     border-bottom: 3px double #e8d4a4;
-}
-
-.header-content {
     position: relative;
-    max-width: 1200px;
-    margin: 0 auto;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.decorative-star {
-    position: absolute;
-    left: 20px;
-    top: 50%;
-    transform: translateY(-50%);
-    color: #ffd700;
-    font-size: 24px;
-    -webkit-user-select: none;
-    user-select: none;
 }
 
 h1 {
@@ -91,12 +72,10 @@ h2 {
     cursor: pointer;
     padding: 10px;
     transition: transform 0.3s ease;
-    -webkit-tap-highlight-color: transparent;
 }
 
 #secretButton.active {
     transform: translateY(-50%) rotate(360deg);
-    -webkit-transform: translateY(-50%) rotate(360deg);
 }
 
 .secret-message {
@@ -104,9 +83,8 @@ h2 {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    -webkit-transform: translate(-50%, -50%);
     background: rgba(26, 15, 15, 0.95);
-    padding: 20px;
+    padding: 20px 40px;
     border: 2px solid #ffd700;
     border-radius: 10px;
     font-family: 'Limelight', cursive;
@@ -114,19 +92,12 @@ h2 {
     font-size: 1.5rem;
     z-index: 1000;
     opacity: 0;
-    visibility: hidden;
     pointer-events: none;
-    transition: opacity 0.3s ease, visibility 0.3s ease;
-    -webkit-transition: opacity 0.3s ease, visibility 0.3s ease;
-    text-align: center;
-    width: 80%;
-    max-width: 300px;
-    box-sizing: border-box;
+    transition: opacity 0.3s ease;
 }
 
 .secret-message.visible {
     opacity: 1;
-    visibility: visible;
     pointer-events: auto;
 }
 
@@ -167,6 +138,7 @@ input, textarea {
     font-family: 'Old Standard TT', serif;
     font-size: 16px;
     width: 100%;
+    -webkit-appearance: none;
 }
 
 input:focus, textarea:focus {
@@ -253,25 +225,6 @@ button:active {
 
     .movie-card {
         padding: 1rem;
-    }
-}
-
-@media (max-width: 768px) {
-    .decorative-star,
-    #secretButton {
-        position: relative;
-        transform: none;
-        -webkit-transform: none;
-    }
-
-    .header-content {
-        padding: 0 10px;
-    }
-
-    .secret-message {
-        width: 90%;
-        padding: 15px;
-        font-size: 1.2rem;
     }
 }
 
