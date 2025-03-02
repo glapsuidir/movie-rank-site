@@ -40,8 +40,33 @@ class MovieManager {
         localStorage.setItem('movies', JSON.stringify(this.movies));
     }
 
-    getAllMovies() {
-        return this.movies.sort((a, b) => parseFloat(b.rating) - parseFloat(a.rating));
+    getAllMovies(sortBy = 'rating') {
+        return [...this.movies].sort((a, b) => {
+            switch (sortBy) {
+                case 'rating':
+                    return parseFloat(b.rating) - parseFloat(a.rating);
+                case 'title':
+                    // Remove 'The ' from the beginning of titles for sorting
+                    const cleanTitle = (title) => {
+                        return title.replace(/^The\s+/i, '').trim();
+                    };
+                    return cleanTitle(a.title).localeCompare(cleanTitle(b.title));
+                case 'year':
+                    // Handle null years by putting them at the end
+                    if (!a.year) return 1;
+                    if (!b.year) return -1;
+                    return parseInt(b.year) - parseInt(a.year);
+                case 'director':
+                    // Handle null directors and get last name
+                    const getLastName = (director) => {
+                        if (!director) return '';
+                        return director.split(' ').pop();
+                    };
+                    return getLastName(a.director).localeCompare(getLastName(b.director));
+                default:
+                    return parseFloat(b.rating) - parseFloat(a.rating);
+            }
+        });
     }
 }
 
@@ -72,8 +97,8 @@ movieForm.addEventListener('submit', async (e) => {
 });
 
 // Display movies function
-function displayMovies() {
-    const movies = movieManager.getAllMovies();
+function displayMovies(sortBy = 'rating') {
+    const movies = movieManager.getAllMovies(sortBy);
     moviesListDiv.innerHTML = movies.map(movie => `
         <div class="movie-card">
             ${movie.poster ? `
@@ -120,4 +145,30 @@ document.addEventListener('DOMContentLoaded', () => {
             }, 3000);
         }
     });
+
+    addSortingControls();
 });
+
+// Add sorting controls to the HTML
+function addSortingControls() {
+    const sortingDiv = document.createElement('div');
+    sortingDiv.className = 'sorting-controls';
+    sortingDiv.innerHTML = `
+        <label>Sort by:</label>
+        <select id="sortSelect">
+            <option value="rating">Rating</option>
+            <option value="title">Title</option>
+            <option value="year">Year</option>
+            <option value="director">Director</option>
+        </select>
+    `;
+    
+    // Insert before the movies list
+    const moviesList = document.getElementById('moviesList');
+    moviesList.parentNode.insertBefore(sortingDiv, moviesList);
+
+    // Add event listener for sorting
+    document.getElementById('sortSelect').addEventListener('change', (e) => {
+        displayMovies(e.target.value);
+    });
+}
