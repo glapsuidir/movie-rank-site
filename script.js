@@ -105,7 +105,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const secretButton = document.getElementById('secretButton');
     let messageElement = document.createElement('div');
     messageElement.className = 'secret-message';
-    messageElement.textContent = 'i love you kai ♥';
+    messageElement.textContent = 'I love you Kai ♥';
     document.body.appendChild(messageElement);
 
     secretButton.addEventListener('click', () => {
