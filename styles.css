@@ -1,0 +1,214 @@
+@import url('https://fonts.googleapis.com/css2?family=Limelight&family=Old+Standard+TT:wght@400;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+}
+
+body {
+    font-family: 'Old Standard TT', serif;
+    line-height: 1.6;
+    padding: 10px;
+    background-color: #1a0f0f;
+    color: #e8d4a4;
+    min-height: 100vh;
+    position: relative;
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(rgba(255, 235, 165, 0.03) 50%, rgba(0, 0, 0, 0.03) 50%);
+    background-size: 4px 4px;
+    pointer-events: none;
+    z-index: 2;
+}
+
+header {
+    text-align: center;
+    margin: 1rem 0 2rem;
+    padding: 20px;
+    background: #1a0f0f;
+    border-top: 3px double #e8d4a4;
+    border-bottom: 3px double #e8d4a4;
+    position: relative;
+}
+
+h1 {
+    font-family: 'Limelight', cursive;
+    font-size: 2.5rem;
+    color: #ffd700;
+    text-shadow: 
+        3px 3px 0 #8b0000,
+        -1px -1px 0 #8b0000,
+        1px -1px 0 #8b0000,
+        -1px 1px 0 #8b0000,
+        1px 1px 0 #8b0000;
+    letter-spacing: 2px;
+}
+
+h2 {
+    font-family: 'Limelight', cursive;
+    color: #ffd700;
+    margin-bottom: 1rem;
+    text-shadow: 2px 2px 0 #8b0000;
+}
+
+.add-movie-section {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto 1.5rem;
+    background-color: #2a1f1f;
+    padding: 2rem 1.5rem 1.5rem;
+    border: 2px solid #8b0000;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+    position: relative;
+}
+
+.add-movie-section::before {
+    content: '★';
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #2a1f1f;
+    color: #ffd700;
+    font-size: 24px;
+    padding: 0 10px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+input, textarea {
+    padding: 12px;
+    background-color: #1a0f0f;
+    border: 1px solid #8b0000;
+    color: #e8d4a4;
+    font-family: 'Old Standard TT', serif;
+    font-size: 16px;
+    width: 100%;
+    -webkit-appearance: none;
+}
+
+input:focus, textarea:focus {
+    outline: none;
+    border-color: #ffd700;
+    box-shadow: 0 0 10px rgba(255, 215, 0, 0.2);
+}
+
+button {
+    padding: 12px;
+    min-height: 44px;
+    background: #8b0000;
+    color: #e8d4a4;
+    border: 1px solid #e8d4a4;
+    font-family: 'Limelight', cursive;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 16px;
+}
+
+button:active {
+    transform: scale(0.98);
+    background: #6b0000;
+}
+
+.movies-list {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 5px;
+}
+
+.movie-card {
+    display: flex;
+    flex-direction: column;
+    background-color: #2a1f1f;
+    border: 1px solid #8b0000;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    gap: 1rem;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+}
+
+.movie-poster {
+    width: 100%;
+    max-width: 200px;
+    height: auto;
+    border: 2px solid #8b0000;
+    align-self: center;
+    filter: sepia(20%);
+}
+
+.movie-info {
+    width: 100%;
+    padding: 10px;
+}
+
+.movie-info h3 {
+    font-family: 'Limelight', cursive;
+    color: #ffd700;
+    margin-bottom: 0.8rem;
+    font-size: 1.3rem;
+    text-shadow: 1px 1px 0 #8b0000;
+    text-align: center;
+}
+
+.movie-info p {
+    margin-bottom: 0.8rem;
+    color: #e8d4a4;
+    font-size: 1rem;
+    text-align: center;
+    font-style: italic;
+}
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 2rem;
+    }
+
+    .add-movie-section {
+        padding: 2rem 1rem 1rem;
+    }
+
+    .movie-card {
+        padding: 1rem;
+    }
+}
+
+/* Fix for iOS Safari */
+@supports (-webkit-touch-callout: none) {
+    body {
+        min-height: -webkit-fill-available;
+    }
+}
+
+/* Prevent pull-to-refresh */
+html {
+    overscroll-behavior-y: contain;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+    width: 12px;
+}
+
+::-webkit-scrollbar-track {
+    background: #1a0f0f;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #8b0000;
+    border: 1px solid #e8d4a4;
+}

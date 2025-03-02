@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Ranking Site</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Movie Rankings</h1>
+    </header>
+
+    <main>
+        <!-- Form to add new movies -->
+        <section class="add-movie-section">
+            <h2>Add New Movie</h2>
+            <form id="movieForm">
+                <input type="text" id="movieTitle" placeholder="Movie Title" required>
+                <input type="number" id="movieRating" min="1" max="10" placeholder="Rating (1-10)" required>
+                <textarea id="movieNotes" placeholder="Notes (optional)"></textarea>
+                <button type="submit">Add Movie</button>
+            </form>
+        </section>
+
+        <!-- Display movie rankings -->
+        <section class="movies-list">
+            <h2>Your Rankings</h2>
+            <div id="moviesList"></div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
