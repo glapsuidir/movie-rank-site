@@ -17,7 +17,7 @@ class MovieManager {
         const movie = {
             id: Date.now(),
             title,
-            rating: Number(rating),
+            rating: parseFloat(rating).toFixed(1),
             notes,
             date: new Date().toISOString(),
             poster: movieData.Poster !== 'N/A' ? movieData.Poster : null,
@@ -41,7 +41,7 @@ class MovieManager {
     }
 
     getAllMovies() {
-        return this.movies.sort((a, b) => b.rating - a.rating);
+        return this.movies.sort((a, b) => parseFloat(b.rating) - parseFloat(a.rating));
     }
 }
 
