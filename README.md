@@ -20,6 +20,7 @@ In the fourth line of code in the 'script.js' file, there is a hardcoded API key
 - **GitHub Pages**: Hosting the website.
 
 ## Installation & Usage
+The entire application can be run fully from GitHub Pages. However if you woulf like to access it locally, the steps are show below.
 1. Clone the repository:
    ```sh
    git clone https://github.com/glapsuidir/movie-rank-site.git
