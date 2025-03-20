@@ -11,7 +11,6 @@ class MovieManager {
     }
 
     async addMovie(title, rating, notes) {
-        // Fetch movie data from OMDB
         const movieData = await this.searchMovie(title);
         
         const movie = {
@@ -46,18 +45,15 @@ class MovieManager {
                 case 'rating':
                     return parseFloat(b.rating) - parseFloat(a.rating);
                 case 'title':
-                    // Remove 'The ' from the beginning of titles for sorting
                     const cleanTitle = (title) => {
                         return title.replace(/^The\s+/i, '').trim();
                     };
                     return cleanTitle(a.title).localeCompare(cleanTitle(b.title));
                 case 'year':
-                    // Handle null years by putting them at the end
                     if (!a.year) return 1;
                     if (!b.year) return -1;
                     return parseInt(b.year) - parseInt(a.year);
                 case 'director':
-                    // Handle null directors and get last name
                     const getLastName = (director) => {
                         if (!director) return '';
                         return director.split(' ').pop();
@@ -70,14 +66,11 @@ class MovieManager {
     }
 }
 
-// Initialize the movie manager
 const movieManager = new MovieManager();
 
-// DOM Elements
 const movieForm = document.getElementById('movieForm');
 const moviesListDiv = document.getElementById('moviesList');
 
-// Event Listeners
 movieForm.addEventListener('submit', async (e) => {
     e.preventDefault();
     
@@ -85,7 +78,6 @@ movieForm.addEventListener('submit', async (e) => {
     const rating = document.getElementById('movieRating').value;
     const notes = document.getElementById('movieNotes').value;
 
-    // Add loading state if desired
     try {
         await movieManager.addMovie(title, rating, notes);
         displayMovies();
@@ -96,7 +88,6 @@ movieForm.addEventListener('submit', async (e) => {
     }
 });
 
-// Display movies function
 function displayMovies(sortBy = 'rating') {
     const movies = movieManager.getAllMovies(sortBy);
     moviesListDiv.innerHTML = movies.map(movie => `
@@ -116,16 +107,13 @@ function displayMovies(sortBy = 'rating') {
     `).join('');
 }
 
-// Delete movie function
 function deleteMovie(id) {
     movieManager.deleteMovie(id);
     displayMovies();
 }
 
-// Initial display
 displayMovies();
 
-// Add this at the end of your file
 document.addEventListener('DOMContentLoaded', () => {
     const secretButton = document.getElementById('secretButton');
     let messageElement = document.createElement('div');
@@ -137,7 +125,6 @@ document.addEventListener('DOMContentLoaded', () => {
         secretButton.classList.toggle('active');
         messageElement.classList.toggle('visible');
         
-        // Auto-hide after 3 seconds
         if (messageElement.classList.contains('visible')) {
             setTimeout(() => {
                 messageElement.classList.remove('visible');
@@ -149,7 +136,6 @@ document.addEventListener('DOMContentLoaded', () => {
     addSortingControls();
 });
 
-// Add sorting controls to the HTML
 function addSortingControls() {
     const sortingDiv = document.createElement('div');
     sortingDiv.className = 'sorting-controls';
@@ -163,11 +149,9 @@ function addSortingControls() {
         </select>
     `;
     
-    // Insert before the movies list
     const moviesList = document.getElementById('moviesList');
     moviesList.parentNode.insertBefore(sortingDiv, moviesList);
 
-    // Add event listener for sorting
     document.getElementById('sortSelect').addEventListener('change', (e) => {
         displayMovies(e.target.value);
     });
